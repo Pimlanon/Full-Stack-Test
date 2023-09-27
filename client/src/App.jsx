@@ -1,7 +1,7 @@
-import "./App.css";
+import TestAndTry from "./pages/Test";
 
 function App() {
-  return <h1>hello world</h1>;
+  return <TestAndTry />;
 }
 
 export default App;
