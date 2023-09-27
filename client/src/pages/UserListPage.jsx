@@ -1,11 +1,12 @@
 import Layout from "../layouts/Layout";
+import UserListHead from "../components/userListHeads/userListHead";
 
-function UserList() {
+function UserListPage() {
   return (
     <Layout>
-      <h1>User List</h1>
+      <UserListHead />
     </Layout>
   );
 }
 
-export default UserList;
+export default UserListPage;
