@@ -1,11 +1,11 @@
 import Layout from "../layouts/Layout";
 
-function TestAndTry() {
+function UserList() {
   return (
     <Layout>
-      <div>hello</div>
+      <h1>User List</h1>
     </Layout>
   );
 }
 
-export default TestAndTry;
+export default UserList;

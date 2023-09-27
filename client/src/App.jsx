@@ -1,7 +1,7 @@
-import TestAndTry from "./pages/Test";
+import UserList from "./pages/UserListPage";
 
 function App() {
-  return <TestAndTry />;
+  return <UserList />;
 }
 
 export default App;
