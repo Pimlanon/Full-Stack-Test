@@ -7,12 +7,17 @@ export const HeadNav = styled.section`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  cursor: pointer;
-  font-family: Arial, Helvetica, sans-serif;
 
-  h1 {
-    color: #fff;
+  div {
     margin-left: 2rem;
+    cursor: pointer;
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    h1 {
+      color: #fff;
+    }
   }
 
   img {
