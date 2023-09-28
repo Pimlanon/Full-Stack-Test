@@ -1,6 +1,6 @@
 import User from '../models/user.model.js';
 
-// fetch all users from the database
+// fetch all users
 export const getUsers = async (req, res) => {
   try {
     const users = await User.find();
@@ -18,7 +18,7 @@ export const getUsers = async (req, res) => {
   }
 };
 
-//fetch only one user from the database
+//fetch one user
 export const getSingleUser = async (req, res) => {
   const userId = req.params.id;
 
@@ -37,7 +37,7 @@ export const getSingleUser = async (req, res) => {
   }
 };
 
-// create a new user to the database
+// create a new user
 export const createUser = async (req, res) => {
   const userData = req.body;
 
@@ -61,7 +61,7 @@ export const updateUser = async (req, res) => {
       new: true,
     });
 
-    // Check if there are no users
+    // check if there are no users
     if (!updatedUser) {
       return res.status(404).json({ message: 'User not found' });
     }
@@ -71,5 +71,25 @@ export const updateUser = async (req, res) => {
     res
       .status(500)
       .json({ message: 'Failed to update user', error: error.message });
+  }
+};
+
+// delete user
+export const deleteUser = async (req, res) => {
+  const userId = req.params.id;
+
+  try {
+    const deletedUser = await User.findByIdAndDelete(userId);
+
+    // check if there are no users
+    if (!deletedUser) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.json({ message: 'User deleted successfully' });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: 'Failed to delete user', error: error.message });
   }
 };
