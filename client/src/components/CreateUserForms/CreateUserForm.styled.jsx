@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.section`
-  border: 1px solid red;
+  /* border: 1px solid red; */
   height: 100%;
   padding: 0rem 4rem 0rem 4rem;
 `;
@@ -106,11 +106,11 @@ export const NameContainer = styled.div`
   /* border: 1px solid green; */
   display: flex;
   width: 100%;
-  height: 70%;
+  height: 100%;
   flex-wrap: wrap;
   justify-content: space-between;
 
-  gap: 5px;
+  /* gap: 50px; */
 
   div {
     display: flex;
@@ -166,5 +166,9 @@ export const NameContainer = styled.div`
         border: 2px solid #4a7dff;
       }
     }
+  }
+
+  div:nth-child(2) {
+    margin-bottom: 4rem;
   }
 `;
