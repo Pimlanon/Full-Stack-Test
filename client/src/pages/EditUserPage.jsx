@@ -43,6 +43,10 @@ function EditUserPage() {
     }
   };
 
+  const handleCancel = () => {
+    NavigateTo("/users");
+  };
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -64,6 +68,7 @@ function EditUserPage() {
         userData={userData}
         handleInputChange={handleInputChange}
         handleFormSubmit={handleFormSubmit}
+        handleCancel={handleCancel}
       />
     </Layout>
   );

@@ -1,13 +1,13 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import {
   Container,
   Form,
   ImageContainer,
   InputContainer,
   NameContainer,
-} from './CreateUserForm.styled';
+} from "./CreateUserForm.styled";
 
-function CreateUserForm({ handleInputChange, handleFormSubmit }) {
+function CreateUserForm({ handleInputChange, handleFormSubmit, handleCancel }) {
   return (
     <Container>
       <Form onSubmit={handleFormSubmit}>
@@ -66,7 +66,7 @@ function CreateUserForm({ handleInputChange, handleFormSubmit }) {
           </InputContainer>
         </div>
         <div className="btn-container">
-          <button>CANCEL</button>
+          <button onClick={handleCancel}>CANCEL</button>
           <button type="submit">SAVE</button>
         </div>
       </Form>

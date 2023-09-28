@@ -48,12 +48,17 @@ function CreateNewUserPage() {
     }
   };
 
+  const handleCancel = () => {
+    NavigateTo("/users");
+  };
+
   return (
     <Layout>
       <CreateUserHead />
       <CreateUserForm
         handleInputChange={handleInputChange}
         handleFormSubmit={handleFormSubmit}
+        handleCancel={handleCancel}
       />
     </Layout>
   );

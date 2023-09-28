@@ -6,7 +6,12 @@ import {
   NameContainer,
 } from "../CreateuserForms/CreateUserForm.styled";
 
-function EditUserForm({ handleFormSubmit, handleInputChange, userData }) {
+function EditUserForm({
+  handleFormSubmit,
+  handleInputChange,
+  userData,
+  handleCancel,
+}) {
   return (
     <Container>
       <Form onSubmit={handleFormSubmit}>
@@ -73,7 +78,7 @@ function EditUserForm({ handleFormSubmit, handleInputChange, userData }) {
           </InputContainer>
         </div>
         <div className="btn-container">
-          <button>CANCEL</button>
+          <button onClick={handleCancel}>CANCEL</button>
           <button type="submit">SAVE</button>
         </div>
       </Form>
