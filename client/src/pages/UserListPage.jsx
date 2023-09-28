@@ -1,5 +1,5 @@
 import Layout from '../layouts/Layout';
-import UserListHead from '../components/userListHeads/userListHead';
+import UserListHead from '../components/UserListHeads/UserListHead';
 import UserListTable from '../components/UserListTables/UserListTable';
 
 function UserListPage() {

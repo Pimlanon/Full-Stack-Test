@@ -117,7 +117,7 @@ export const NameContainer = styled.div`
     flex-direction: column;
     /* border: 1px solid red; */
     height: 5.5rem;
-    width: 29rem;
+    width: 26rem;
 
     label {
       margin-bottom: 0.5rem;
@@ -169,6 +169,6 @@ export const NameContainer = styled.div`
   }
 
   div:nth-child(2) {
-    margin-bottom: 4rem;
+    margin-bottom: 5rem;
   }
 `;
