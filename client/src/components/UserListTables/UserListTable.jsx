@@ -1,7 +1,7 @@
-import { Container } from './UserListTable.styled';
-import PropTypes from 'prop-types';
+import { Container } from "./UserListTable.styled";
+import PropTypes from "prop-types";
 
-function UserListTable({ users }) {
+function UserListTable({ users, handleDelete }) {
   console.log(users);
   return (
     <Container>
@@ -27,7 +27,7 @@ function UserListTable({ users }) {
               <td className="col6">
                 <div>
                   <button>Edit</button>
-                  <button>Delete</button>
+                  <button onClick={() => handleDelete(user._id)}>Delete</button>
                 </div>
               </td>
             </tr>

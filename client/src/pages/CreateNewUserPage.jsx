@@ -17,9 +17,25 @@ function CreateNewUserPage() {
 
   const NavigateTo = useNavigate();
 
+  //format date
+  const formatDate = (date) => {
+    const options = { day: "numeric", month: "short", year: "numeric" };
+    const [month, day, year] = new Date(date)
+      .toLocaleDateString(undefined, options)
+      .split(" ");
+    return `${parseInt(day)} ${month} ${year}`;
+  };
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setUserData({ ...userData, [name]: value });
+
+    let formattedValue = value;
+
+    if (name === "birthDate") {
+      formattedValue = formatDate(value);
+    }
+
+    setUserData({ ...userData, [name]: formattedValue });
   };
 
   console.log("formData : ", userData);
