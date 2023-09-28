@@ -1,7 +1,7 @@
 import { Container } from "./UserListTable.styled";
 import PropTypes from "prop-types";
 
-function UserListTable({ users, handleDelete }) {
+function UserListTable({ users, handleDelete, handleEdit }) {
   console.log(users);
   return (
     <Container>
@@ -26,7 +26,7 @@ function UserListTable({ users, handleDelete }) {
               <td className="col5">{user.birthDate}</td>
               <td className="col6">
                 <div>
-                  <button>Edit</button>
+                  <button onClick={() => handleEdit(user._id)}>Edit</button>
                   <button onClick={() => handleDelete(user._id)}>Delete</button>
                 </div>
               </td>

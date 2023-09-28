@@ -1,18 +1,33 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Layout from "../layouts/Layout";
 import UserListHead from "../components/UserListHeads/UserListHead";
 import UserListTable from "../components/UserListTables/UserListTable";
 
 function UserListPage() {
+  const navigateTo = useNavigate();
   const [users, setUsers] = useState([]);
+
+  //format date
+  const formatDate = (date) => {
+    const options = { day: "numeric", month: "short", year: "numeric" };
+    const [month, day, year] = new Date(date)
+      .toLocaleDateString(undefined, options)
+      .split(" ");
+    return `${parseInt(day)} ${month} ${year}`;
+  };
 
   const getUsersData = async () => {
     try {
       const response = await axios.get("http://localhost:3800/users");
       console.log(response.data.data);
-      setUsers(response.data.data);
+      const formattedUsers = response.data.data.map((user) => ({
+        ...user,
+        birthDate: formatDate(user.birthDate),
+      }));
+      setUsers(formattedUsers);
     } catch (error) {
       console.error("Failed to fetch users:", error);
       setUsers([]);
@@ -46,10 +61,18 @@ function UserListPage() {
     }
   };
 
+  const handleEdit = (id) => {
+    navigateTo(`/users/${id}`);
+  };
+
   return (
     <Layout>
       <UserListHead />
-      <UserListTable users={users} handleDelete={handleDelete} />
+      <UserListTable
+        users={users}
+        handleDelete={handleDelete}
+        handleEdit={handleEdit}
+      />
     </Layout>
   );
 }
