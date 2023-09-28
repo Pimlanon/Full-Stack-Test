@@ -7,6 +7,7 @@ import CreateUserHead from "../components/CreateUserHeads/CreateUserHead";
 import CreateUserForm from "../components/CreateuserForms/CreateUserForm";
 
 function CreateNewUserPage() {
+  const [image, setImage] = useState(null);
   const [userData, setUserData] = useState({
     firstName: "",
     lastName: "",
@@ -23,15 +24,35 @@ function CreateNewUserPage() {
     setUserData({ ...userData, [name]: value });
   };
 
-  console.log("formData : ", userData);
+  const handleFileChange = (e) => {
+    const { files } = e.target;
+    if (files && files[0]) {
+      const file = files[0];
+      setImage(URL.createObjectURL(file));
+      setUserData((prevInputs) => ({ ...prevInputs, picture: file }));
+    }
+  };
+
+  console.log(image);
+
+  console.log("userData : ", userData);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
+    const formData = new FormData();
+
+    for (const [key, value] of Object.entries(userData)) {
+      formData.append(key, value);
+    }
+
     try {
       const response = await axios.post(
         "http://localhost:3800/users",
-        userData
+        userData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
       );
       console.log("User created successfully:", response.data);
 
@@ -59,6 +80,8 @@ function CreateNewUserPage() {
         handleInputChange={handleInputChange}
         handleFormSubmit={handleFormSubmit}
         handleCancel={handleCancel}
+        handleFileChange={handleFileChange}
+        image={image}
       />
     </Layout>
   );

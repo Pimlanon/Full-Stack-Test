@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const HeadNav = styled.section`
   width: 100%;
@@ -20,7 +20,7 @@ export const HeadNav = styled.section`
     }
   }
 
-  img {
+  .user-img {
     width: 3rem;
     height: 3rem;
     border-radius: 50%;
@@ -28,5 +28,10 @@ export const HeadNav = styled.section`
     margin-right: 2rem;
     background-color: #fff;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-item: center;
+    font-size: 23px;
+    color: #787878;
   }
 `;

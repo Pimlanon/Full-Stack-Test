@@ -7,15 +7,35 @@ import {
   NameContainer,
 } from "./CreateUserForm.styled";
 
-function CreateUserForm({ handleInputChange, handleFormSubmit, handleCancel }) {
+function CreateUserForm({
+  handleInputChange,
+  handleFormSubmit,
+  handleCancel,
+  handleFileChange,
+  image,
+}) {
   return (
     <Container>
       <Form onSubmit={handleFormSubmit}>
         <div className="check">
           <ImageContainer>
-            <figure></figure>
+            <figure>
+              <img src={image}></img>
+            </figure>
             <div className="image-btn">
-              <button>Upload Profile Picture</button>
+              <div>
+                <label className="input-field-label" htmlFor="fileInput">
+                  Choose file
+                </label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  className="input-field"
+                  name="img"
+                  id="fileInput"
+                  onChange={handleFileChange}
+                />
+              </div>
               <button>Delete Picture</button>
             </div>
           </ImageContainer>

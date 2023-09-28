@@ -19,7 +19,9 @@ function UserListTable({ users, handleDelete, handleEdit }) {
         <tbody>
           {users.map((user, index) => (
             <tr key={index}>
-              <td className="col1">{user.picture}</td>
+              <td className="col1">
+                <img src={user.picture}></img>
+              </td>
               <td className="col2">{user.firstName}</td>
               <td className="col3">{user.lastName}</td>
               <td className="col4">{user.gender}</td>

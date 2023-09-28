@@ -1,18 +1,19 @@
-import { Router } from 'express';
+import { Router } from "express";
+import { upload } from "../middlewares/multer.js";
 import {
   getUsers,
   getSingleUser,
   createUser,
   updateUser,
   deleteUser,
-} from '../controllers/users.controller.js';
+} from "../controllers/users.controller.js";
 
 const usersRouter = Router();
 
-usersRouter.get('/', getUsers);
-usersRouter.get('/:id', getSingleUser);
-usersRouter.post('/', createUser);
-usersRouter.put('/:id', updateUser);
-usersRouter.delete('/:id', deleteUser);
+usersRouter.get("/", getUsers);
+usersRouter.get("/:id", getSingleUser);
+usersRouter.post("/", upload.single("picture"), createUser);
+usersRouter.put("/:id", updateUser);
+usersRouter.delete("/:id", deleteUser);
 
 export default usersRouter;

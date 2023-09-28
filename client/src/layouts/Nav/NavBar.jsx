@@ -1,11 +1,11 @@
-import { HeadNav } from './NavBar.styled';
-import { useNavigate } from 'react-router-dom';
+import { HeadNav } from "./NavBar.styled";
+import { useNavigate } from "react-router-dom";
 
 function NavBar() {
   const navigateTo = useNavigate();
 
   const handleOnClick = () => {
-    navigateTo('/users');
+    navigateTo("/users");
   };
 
   return (
@@ -14,7 +14,9 @@ function NavBar() {
         <h1>User Management</h1>
       </div>
 
-      <img alt="user-img"></img>
+      <div className="user-img" alt="user-img">
+        D
+      </div>
     </HeadNav>
   );
 }

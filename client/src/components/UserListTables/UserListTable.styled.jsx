@@ -30,55 +30,49 @@ export const Container = styled.section`
       }
 
       .col1 {
-        div {
-          width: 100%;
-          height: 5rem;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        figure {
-          width: 4rem;
-          height: 3.5rem;
+        img {
+          border: 2px solid #2a4996;
           border-radius: 50%;
-          background-color: #787878;
-        }
-      }
-
-      .col4 {
-        width: 10%;
-      }
-
-      .col6 {
-        /* border: 1px solid black; */
-
-        div {
-          display: flex;
-          justify-content: space-around;
-          align-items: center;
-
-          button {
-            cursor: pointer;
-            width: 4.5rem;
-            height: 2.5rem;
-            border: none;
-            color: #fff;
-          }
-
-          button:nth-child(1) {
-            background-color: #d4bb1e;
-          }
-
-          button:nth-child(2) {
-            background-color: #ab3333;
-          }
+          width: 4rem;
+          height: 3.8rem;
+          object-fit: cover;
         }
       }
     }
 
-    tr:hover {
-      background-color: #f0f0f0; /* Change the background color on hover */
+    .col4 {
+      width: 10%;
     }
+
+    .col6 {
+      /* border: 1px solid black; */
+
+      div {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        button {
+          cursor: pointer;
+          width: 5rem;
+          height: 2.5rem;
+          border: none;
+          color: #fff;
+          font-size: 18px;
+        }
+
+        button:nth-child(1) {
+          background-color: #d4bb1e;
+        }
+
+        button:nth-child(2) {
+          background-color: #ab3333;
+        }
+      }
+    }
+  }
+
+  tr:hover {
+    background-color: #f0f0f0; /* Change the background color on hover */
   }
 `;
