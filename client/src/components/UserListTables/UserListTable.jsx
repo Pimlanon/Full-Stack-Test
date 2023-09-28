@@ -1,54 +1,45 @@
 import { Container } from './UserListTable.styled';
+import PropTypes from 'prop-types';
 
-function UserListTable() {
+function UserListTable({ users }) {
+  console.log(users);
   return (
     <Container>
       <table>
-        <tr>
-          <th>Profile picture</th>
-          <th>First name</th>
-          <th>Last name</th>
-          <th>Gender</th>
-          <th>Birthday</th>
-          <th>Action</th>
-        </tr>
-        <tr>
-          <td className="col1">
-            <div>
-              <figure></figure>
-            </div>
-          </td>
-          <td className="col2">Rattapong</td>
-          <td className="col3">Sukjai</td>
-          <td className="col4">Male</td>
-          <td className="col5">13 Jun 2023</td>
-          <td className="col6">
-            <div>
-              <button>Edit</button>
-              <button>Delete</button>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td className="col1">
-            <div>
-              <figure></figure>
-            </div>
-          </td>
-          <td className="col2">Rattapong</td>
-          <td className="col3">Sukjai</td>
-          <td className="col4">Male</td>
-          <td className="col5">13 Jun 2023</td>
-          <td className="col6">
-            <div>
-              <button>Edit</button>
-              <button>Delete</button>
-            </div>
-          </td>
-        </tr>
+        <thead>
+          <tr>
+            <th>Profile picture</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Gender</th>
+            <th>Birthday</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.map((user, index) => (
+            <tr key={index}>
+              <td className="col1">{user.picture}</td>
+              <td className="col2">{user.firstName}</td>
+              <td className="col3">{user.lastName}</td>
+              <td className="col4">{user.gender}</td>
+              <td className="col5">{user.birthDate}</td>
+              <td className="col6">
+                <div>
+                  <button>Edit</button>
+                  <button>Delete</button>
+                </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
       </table>
     </Container>
   );
 }
+
+UserListTable.propTypes = {
+  users: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default UserListTable;
