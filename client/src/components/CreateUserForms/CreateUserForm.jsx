@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {
   Container,
   Form,
@@ -6,10 +7,10 @@ import {
   NameContainer,
 } from './CreateUserForm.styled';
 
-function CreateUserForm() {
+function CreateUserForm({ handleInputChange, handleFormSubmit }) {
   return (
     <Container>
-      <Form>
+      <Form onSubmit={handleFormSubmit}>
         <div className="check">
           <ImageContainer>
             <figure></figure>
@@ -26,6 +27,8 @@ function CreateUserForm() {
                   type="text"
                   name="firstName"
                   placeholder="Please enter First name"
+                  onChange={handleInputChange}
+                  required
                 ></input>
               </div>
               <div>
@@ -34,33 +37,46 @@ function CreateUserForm() {
                   type="text"
                   name="lastName"
                   placeholder="Please enter Last name"
+                  onChange={handleInputChange}
+                  required
                 ></input>
               </div>
               <div>
                 <label htmlFor="gender">Gender</label>
-                <select name="Gender">
-                  <option value="" disabled={true}>
+                <select name="gender" onChange={handleInputChange} required>
+                  <option value="" disabled={false}>
                     -- Please select Gender --
                   </option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
-                  <option value="prefer-not-to-say">Prefer not to say</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  <option value="Prefer-not-to-say">Prefer not to say</option>
                 </select>
               </div>
               <div>
-                <label htmlFor="birthday">Birthday</label>
-                <input type="date" name="birthday" id="birthday"></input>
+                <label htmlFor="birthDate">Birthday</label>
+                <input
+                  type="date"
+                  name="birthDate"
+                  id="birthday"
+                  onChange={handleInputChange}
+                  required
+                ></input>
               </div>
             </NameContainer>
           </InputContainer>
         </div>
         <div className="btn-container">
           <button>CANCEL</button>
-          <button>SAVE</button>
+          <button type="submit">SAVE</button>
         </div>
       </Form>
     </Container>
   );
 }
+
+CreateUserForm.propTypes = {
+  handleInputChange: PropTypes.func.isRequired,
+  handleFormSubmit: PropTypes.func.isRequired,
+};
 
 export default CreateUserForm;
