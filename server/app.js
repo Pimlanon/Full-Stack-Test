@@ -3,13 +3,16 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import cloudinary from 'cloudinary';
+import usersRouter from './routers/users.router.js';
 
 async function init() {
   dotenv.config();
   mongoose.set('strictQuery', true);
 
   try {
-    await mongoose.connect(process.env.DATABASE_URL);
+    await mongoose.connect(process.env.DATABASE_URL, {
+      dbName: `${process.env.DB_NAME}`,
+    });
     console.log('Connected to MongoDB!');
   } catch (error) {
     console.log(error);
@@ -19,6 +22,11 @@ async function init() {
   const port = 3800;
 
   app.use(cors());
+
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: true }));
+
+  app.use('/users', usersRouter);
 
   app.listen(port, () => {
     console.log(`Server is running on ${port}`);
