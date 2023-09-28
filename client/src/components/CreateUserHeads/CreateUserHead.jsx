@@ -1,19 +1,18 @@
-import { Container } from './UserListHead.styled';
+import { Container } from './CreateUserHead.styled';
 import { useNavigate } from 'react-router-dom';
 
-function UserListHead() {
+function CreateUserHead() {
   const navigateTo = useNavigate();
-
   const handleOnClick = () => {
     navigateTo('/create-user');
   };
 
   return (
     <Container>
-      <h1>User List</h1>
+      <h1>Create New User</h1>
       <button onClick={handleOnClick}>Add +</button>
     </Container>
   );
 }
 
-export default UserListHead;
+export default CreateUserHead;
