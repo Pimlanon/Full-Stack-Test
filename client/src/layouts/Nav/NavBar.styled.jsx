@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const HeadNav = styled.section`
   width: 100%;
@@ -27,5 +27,6 @@ export const HeadNav = styled.section`
     border: 3px solid #2a4996;
     margin-right: 2rem;
     background-color: #fff;
+    cursor: pointer;
   }
 `;
