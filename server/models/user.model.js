@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const { Schema } = mongoose;
 const userSchema = new Schema(
@@ -18,7 +18,7 @@ const userSchema = new Schema(
     gender: {
       type: String,
       required: true,
-      enum: ['Male', 'Female', 'Prefer not to say'],
+      enum: ["Male", "Female", "Prefer-not-to-say"],
     },
     picture: {
       type: String,
@@ -26,8 +26,8 @@ const userSchema = new Schema(
     },
   },
   {
-    collection: 'users',
+    collection: "users",
   }
 );
 
-export default mongoose.model('User', userSchema);
+export default mongoose.model("User", userSchema);
