@@ -3,9 +3,16 @@ import { cloudinaryUploadProfile } from "../utils/upload.js";
 
 // fetch all users
 export const getUsers = async (req, res) => {
+  const { page, limit } = req.query;
   try {
-    const users = await User.find();
+    const users = await User.find()
+      .limit(parseInt(limit))
+      .skip((parseInt(page) - 1) * parseInt(limit));
 
+    // find total document of User
+    const totalDocs = await User.countDocuments();
+
+    console.log("totalDocs:", totalDocs);
     console.log("Users:", users);
 
     // check if there are no users
@@ -13,7 +20,7 @@ export const getUsers = async (req, res) => {
       return res.status(404).send({ message: "No users found" });
     }
 
-    return res.json({ data: users });
+    return res.json({ data: users, totalDocs: totalDocs });
   } catch (err) {
     return res.status(500).send({ message: "Failed to get users" });
   }

@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 export const Container = styled.section`
-  /* border: 1px solid red; */
+  ${"" /* border: 1px solid red; */}
   padding: 0rem 4rem;
+  padding-bottom: 5rem;
 
   table {
     /* border: 1px solid black; */
@@ -74,5 +75,21 @@ export const Container = styled.section`
 
   tr:hover {
     background-color: #f0f0f0; /* Change the background color on hover */
+  }
+`;
+
+export const Page = styled.div`
+  width: 100%;
+  height: 2rem;
+  padding: 0rem 4rem;
+  display: flex;
+  justify-content: flex-end;
+
+  div {
+    height: 100%;
+    width: 5rem;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
   }
 `;

@@ -5,10 +5,19 @@ import Swal from "sweetalert2";
 import Layout from "../layouts/Layout";
 import UserListHead from "../components/UserListHeads/UserListHead";
 import UserListTable from "../components/UserListTables/UserListTable";
+import { Page } from "../components/UserListTables/UserListTable.styled";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCircleLeft,
+  faCircleRight,
+} from "@fortawesome/free-regular-svg-icons";
 
 function UserListPage() {
   const navigateTo = useNavigate();
   const [users, setUsers] = useState([]);
+  const [limit, setLimit] = useState(3); //page limit
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   //format date
   const formatDate = (date) => {
@@ -21,8 +30,24 @@ function UserListPage() {
 
   const getUsersData = async () => {
     try {
-      const response = await axios.get("http://localhost:3800/users");
-      console.log(response.data.data);
+      const response = await axios.get("http://localhost:3800/users", {
+        params: {
+          page,
+          limit,
+        },
+      });
+      console.log(" pls ", response.data.data);
+
+      console.log("API response:", response.data);
+
+      //Get total of document in database and calculate total pages.
+      const totalDocs = response.data.totalDocs;
+      console.log(totalDocs);
+      const totalPages = Math.ceil(totalDocs / limit);
+      setTotalPages(totalPages);
+
+      console.log("totalPages", totalPages);
+
       const formattedUsers = response.data.data.map((user) => ({
         ...user,
         birthDate: formatDate(user.birthDate),
@@ -34,9 +59,22 @@ function UserListPage() {
     }
   };
 
+  //Handler page change
+  const handlerPrevPage = () => {
+    if (page > 1) {
+      setPage(page - 1);
+    }
+  };
+
+  const handlerNextPage = () => {
+    if (page < totalPages) {
+      setPage(page + 1);
+    }
+  };
+
   useEffect(() => {
     getUsersData();
-  }, []);
+  }, [page, limit]);
 
   const handleDelete = async (id) => {
     try {
@@ -73,6 +111,27 @@ function UserListPage() {
         handleDelete={handleDelete}
         handleEdit={handleEdit}
       />
+
+      {/* page */}
+      {totalPages > 1 && (
+        <Page>
+          <div>
+            <FontAwesomeIcon
+              onClick={handlerPrevPage}
+              icon={faCircleLeft}
+              className="faCircle"
+              style={{ color: page !== 1 ? "4a7dff" : "ababab" }}
+            />
+            <span>{page}</span>
+            <FontAwesomeIcon
+              onClick={handlerNextPage}
+              icon={faCircleRight}
+              className="faCircle"
+              style={{ color: page !== totalPages ? "4a7dff" : "ababab" }}
+            />
+          </div>
+        </Page>
+      )}
     </Layout>
   );
 }
