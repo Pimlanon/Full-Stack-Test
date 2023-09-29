@@ -95,6 +95,20 @@ function EditUserForm({
                   onChange={handleInputChange}
                   required
                   value={userData.birthDate}
+                  max={new Date(
+                    new Date().getFullYear() - 7,
+                    new Date().getMonth(),
+                    new Date().getDate()
+                  )
+                    .toISOString()
+                    .slice(0, 10)}
+                  min={new Date(
+                    new Date().getFullYear() - 60,
+                    new Date().getMonth(),
+                    new Date().getDate()
+                  )
+                    .toISOString()
+                    .slice(0, 10)}
                 ></input>
               </div>
             </NameContainer>
