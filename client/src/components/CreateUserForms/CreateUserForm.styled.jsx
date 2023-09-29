@@ -115,6 +115,7 @@ export const ImageContainer = styled.div`
       border-radius: 5px;
       color: white;
       font-size: 19px;
+      cursor: pointer;
     }
   }
 `;

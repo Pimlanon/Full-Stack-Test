@@ -37,6 +37,12 @@ function CreateNewUserPage() {
 
   console.log("userData : ", userData);
 
+  const handleDeleteImage = (e) => {
+    e.preventDefault();
+    setUserData({ ...userData, picture: null });
+    setImage(null);
+  };
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -82,6 +88,7 @@ function CreateNewUserPage() {
         handleCancel={handleCancel}
         handleFileChange={handleFileChange}
         image={image}
+        handleDeleteImage={handleDeleteImage}
       />
     </Layout>
   );

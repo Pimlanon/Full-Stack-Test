@@ -13,6 +13,7 @@ function CreateUserForm({
   handleCancel,
   handleFileChange,
   image,
+  handleDeleteImage,
 }) {
   return (
     <Container>
@@ -36,7 +37,13 @@ function CreateUserForm({
                   onChange={handleFileChange}
                 />
               </div>
-              <button>Delete Picture</button>
+              <button
+                onClick={(e) => {
+                  handleDeleteImage(e);
+                }}
+              >
+                Delete Picture
+              </button>
             </div>
           </ImageContainer>
           <InputContainer>

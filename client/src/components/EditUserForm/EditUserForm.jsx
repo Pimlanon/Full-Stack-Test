@@ -13,6 +13,7 @@ function EditUserForm({
   handleCancel,
   handleFileChange,
   image,
+  handleDeleteImage,
 }) {
   return (
     <Container>
@@ -36,7 +37,13 @@ function EditUserForm({
                   onChange={handleFileChange}
                 />
               </div>
-              <button>Delete Picture</button>
+              <button
+                onClick={(e) => {
+                  handleDeleteImage(e);
+                }}
+              >
+                Delete Picture
+              </button>
             </div>
           </ImageContainer>
           <InputContainer>

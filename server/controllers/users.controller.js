@@ -42,6 +42,7 @@ export const getSingleUser = async (req, res) => {
 export const createUser = async (req, res) => {
   const userData = req.body;
 
+  //default img
   let image =
     "https://res.cloudinary.com/dvh7erh4q/image/upload/v1695924400/users/IMG_7979_gjogw1.jpg";
 
@@ -67,6 +68,10 @@ export const createUser = async (req, res) => {
 export const updateUser = async (req, res) => {
   const userId = req.params.id;
   const updatedUserData = req.body;
+
+  //default img
+  let image =
+    "https://res.cloudinary.com/dvh7erh4q/image/upload/v1695924400/users/IMG_7979_gjogw1.jpg";
 
   if (req.file) {
     try {
@@ -95,6 +100,8 @@ export const updateUser = async (req, res) => {
     }
   } else {
     try {
+      updatedUserData.picture = image;
+
       const updatedUser = await User.findByIdAndUpdate(
         userId,
         updatedUserData,

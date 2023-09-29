@@ -35,6 +35,13 @@ function EditUserPage() {
     }
   };
 
+  const handleDeleteImage = (e) => {
+    e.preventDefault();
+    console.log("Delete Picture button clicked!");
+    setUserData({ ...userData, picture: null });
+    setImage(null);
+  };
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -98,6 +105,7 @@ function EditUserPage() {
         handleCancel={handleCancel}
         handleFileChange={handleFileChange}
         image={image}
+        handleDeleteImage={handleDeleteImage}
       />
     </Layout>
   );
