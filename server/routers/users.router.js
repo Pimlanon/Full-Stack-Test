@@ -13,7 +13,7 @@ const usersRouter = Router();
 usersRouter.get("/", getUsers);
 usersRouter.get("/:id", getSingleUser);
 usersRouter.post("/", upload.single("picture"), createUser);
-usersRouter.put("/:id", updateUser);
+usersRouter.put("/:id", upload.single("picture"), updateUser);
 usersRouter.delete("/:id", deleteUser);
 
 export default usersRouter;

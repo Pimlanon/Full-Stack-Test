@@ -49,7 +49,7 @@ function CreateNewUserPage() {
     try {
       const response = await axios.post(
         "http://localhost:3800/users",
-        userData,
+        formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
         }

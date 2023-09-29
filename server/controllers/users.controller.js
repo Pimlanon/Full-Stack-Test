@@ -68,21 +68,52 @@ export const updateUser = async (req, res) => {
   const userId = req.params.id;
   const updatedUserData = req.body;
 
-  try {
-    const updatedUser = await User.findByIdAndUpdate(userId, updatedUserData, {
-      new: true,
-    });
+  if (req.file) {
+    try {
+      const uploadedImage = await cloudinaryUploadProfile(req.file);
+      updatedUserData.picture = uploadedImage;
 
-    // check if there are no users
-    if (!updatedUser) {
-      return res.status(404).json({ message: "User not found" });
+      const updatedUser = await User.findByIdAndUpdate(
+        userId,
+        updatedUserData,
+        {
+          new: true,
+        }
+      );
+
+      // check if there are no users
+      if (!updatedUser) {
+        return res.status(404).json({ message: "User not found" });
+      }
+
+      res.json({ data: updatedUser, message: "User updated successfully" });
+    } catch (error) {
+      console.log(error);
+      res
+        .status(500)
+        .json({ message: "Failed to update user", error: error.message });
     }
+  } else {
+    try {
+      const updatedUser = await User.findByIdAndUpdate(
+        userId,
+        updatedUserData,
+        {
+          new: true,
+        }
+      );
 
-    res.json({ data: updatedUser, message: "User updated successfully" });
-  } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Failed to update user", error: error.message });
+      // check if there are no users
+      if (!updatedUser) {
+        return res.status(404).json({ message: "User not found" });
+      }
+
+      res.json({ data: updatedUser, message: "User updated successfully" });
+    } catch (error) {
+      res
+        .status(500)
+        .json({ message: "Failed to update user", error: error.message });
+    }
   }
 };
 

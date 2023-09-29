@@ -9,6 +9,7 @@ import EditUserForm from "../components/EditUserForm/EditUserForm";
 function EditUserPage() {
   const { id } = useParams();
   const NavigateTo = useNavigate();
+  const [image, setImage] = useState(null);
   const [userData, setUserData] = useState({
     firstName: "",
     lastName: "",
@@ -25,10 +26,35 @@ function EditUserPage() {
     }));
   };
 
+  const handleFileChange = (e) => {
+    const { files } = e.target;
+    if (files && files[0]) {
+      const file = files[0];
+      setImage(URL.createObjectURL(file));
+      setUserData((prevInputs) => ({ ...prevInputs, picture: file }));
+    }
+  };
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+
+    const formData = new FormData();
+    for (const [key, value] of Object.entries(userData)) {
+      formData.append(key, value);
+    }
+
+    console.log("formData ; ", formData);
+
     try {
-      await axios.put(`http://localhost:3800/users/${id}`, userData);
+      const response = await axios.put(
+        `http://localhost:3800/users/${id}`,
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
+
+      console.log("completed", response);
 
       //show alert if successfully updated
       Swal.fire({
@@ -36,6 +62,7 @@ function EditUserPage() {
         title: "User Updated",
         text: "User has been updated successfully!",
       }).then(() => {
+        console.log("Swal pop-up displayed");
         NavigateTo("/users");
       });
     } catch (error) {
@@ -69,6 +96,8 @@ function EditUserPage() {
         handleInputChange={handleInputChange}
         handleFormSubmit={handleFormSubmit}
         handleCancel={handleCancel}
+        handleFileChange={handleFileChange}
+        image={image}
       />
     </Layout>
   );
