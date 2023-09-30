@@ -1,20 +1,43 @@
 import styled from "styled-components";
 
 export const Container = styled.section`
-  /* border: 1px solid red; */
+  padding: 0rem 4rem 3rem 4rem;
   height: 100%;
-  padding: 0rem 4rem 0rem 4rem;
+  width: 100%;
+
+  @media (min-width: 1440px) {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  @media (min-width: 2000px) {
+    padding-left: 15%;
+    padding-right: 15%;
+  }
+
+  @media (min-width: 2560px) {
+    padding-left: 20%;
+    padding-right: 20%;
+  }
+
+  @media (max-width: 768px) {
+    padding-bottom: 4rem;
+  }
 `;
 
 export const Form = styled.form`
-  /* border: 1px solid blue; */
   height: 100%;
   position: relative;
 
-  /* display: flex; */
-
   .check {
     display: flex;
+
+    @media (max-width: 1000px) {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
   .btn-container {
@@ -23,6 +46,20 @@ export const Form = styled.form`
     display: flex;
     justify-content: space-between;
     margin-left: auto;
+
+    @media (max-width: 1399px) {
+      margin-left: 25%;
+    }
+
+    @media (max-width: 1000px) {
+      margin-left: 0;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 450px) {
+      flex-direction: column-reverse;
+      width: 100%;
+    }
 
     button {
       font-family: Arial, Helvetica, sans-serif;
@@ -33,6 +70,12 @@ export const Form = styled.form`
       border: none;
       border-radius: 5px;
       color: #fff;
+
+      @media (max-width: 450px) {
+        width: 8rem;
+        margin-bottom: 1rem;
+        margin: 0 auto;
+      }
     }
 
     button:nth-child(1) {
@@ -41,12 +84,15 @@ export const Form = styled.form`
 
     button:nth-child(2) {
       background-color: #2a8233;
+
+      @media (max-width: 450px) {
+        margin-bottom: 1rem;
+      }
     }
   }
 `;
 
 export const ImageContainer = styled.div`
-  /* border: 1px solid green; */
   width: 40%;
   height: 100%;
   display: flex;
@@ -54,12 +100,33 @@ export const ImageContainer = styled.div`
   align-items: center;
   flex: 1;
 
+  @media (max-width: 1000px) {
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
   figure {
     width: 15rem;
     height: 14rem;
     border: 2px solid #787878;
     border-radius: 50%;
     margin-bottom: 2rem;
+
+    @media (max-width: 1000px) {
+      width: 16rem;
+      height: 15rem;
+    }
+
+    @media (max-width: 768px) {
+      width: 14rem;
+      height: 13rem;
+    }
+
+    @media (max-width: 425px) {
+      width: 12rem;
+      height: 11rem;
+    }
 
     img {
       width: 100%;
@@ -77,13 +144,24 @@ export const ImageContainer = styled.div`
     width: 15rem;
     position: relative;
 
+    @media (max-width: 425px) {
+      width: 100%;
+    }
+
     div {
       width: 90%;
       height: 3rem;
 
+      @media (max-width: 1000px) {
+        width: 16rem;
+      }
+
+      @media (max-width: 425px) {
+        width: 90%;
+      }
+
       label {
         background-color: #4a7dff;
-        border-radius: 5px;
         width: 100%;
         height: 100%;
         display: flex;
@@ -93,6 +171,7 @@ export const ImageContainer = styled.div`
         font-size: 19px;
         cursor: pointer;
         margin-bottom: 1rem;
+        border-radius: 5px;
       }
 
       .input-field {
@@ -116,35 +195,60 @@ export const ImageContainer = styled.div`
       color: white;
       font-size: 19px;
       cursor: pointer;
+
+      @media (max-width: 1000px) {
+        width: 16rem;
+      }
+
+      @media (max-width: 425px) {
+        width: 90%;
+      }
     }
   }
 `;
 
 export const InputContainer = styled.div`
-  /* border: 1px solid pink; */
   flex: 2;
   position: relative;
   height: 100%;
   display: flex;
   align-self: flex-end;
+
+  @media (max-width: 1440px) {
+    width: 3rem;
+  }
+
+  @media (max-width: 1000px) {
+    align-self: auto;
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 export const NameContainer = styled.div`
-  /* border: 1px solid green; */
   display: flex;
   width: 100%;
   height: 100%;
   flex-wrap: wrap;
   justify-content: space-between;
 
-  /* gap: 50px; */
+  @media (max-width: 1440px) {
+    flex-wrap: none;
+    gap: 1rem;
+    justify-content: center;
+  }
 
   div {
     display: flex;
     flex-direction: column;
-    /* border: 1px solid red; */
     height: 5.5rem;
     width: 26rem;
+
+    @media (max-width: 768px) {
+      width: 20rem;
+      height: 6rem;
+    }
 
     label {
       margin-bottom: 0.5rem;
@@ -160,6 +264,10 @@ export const NameContainer = styled.div`
       font-size: large;
       padding-left: 10px;
       padding-right: 10px;
+
+      @media (max-width: 768px) {
+        margin-bottom: 1rem;
+      }
 
       &:focus {
         outline: none;
@@ -185,6 +293,10 @@ export const NameContainer = styled.div`
       font-family: Arial, Helvetica, sans-serif;
       cursor: pointer;
 
+      @media (max-width: 768px) {
+        margin-bottom: 1rem;
+      }
+
       &:focus {
         outline: none;
       }
@@ -197,5 +309,9 @@ export const NameContainer = styled.div`
 
   div:nth-child(2) {
     margin-bottom: 5rem;
+
+    @media (max-width: 1399px) {
+      margin-bottom: 0rem;
+    }
   }
 `;
