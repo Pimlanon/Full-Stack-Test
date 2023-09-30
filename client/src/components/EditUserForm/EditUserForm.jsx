@@ -75,15 +75,16 @@ function EditUserForm({
                 <select
                   name="gender"
                   onChange={handleInputChange}
-                  required
                   value={userData.gender}
                 >
-                  <option value="" disabled={false}>
+                  <option value="" disabled={true}>
                     -- Please select Gender --
                   </option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
-                  <option value="Prefer-not-to-say">Prefer not to say</option>
+                  <option value="Prefer-not-to-say" defaultValue>
+                    Prefer not to say
+                  </option>
                 </select>
               </div>
               <div>
@@ -93,7 +94,6 @@ function EditUserForm({
                   name="birthDate"
                   id="birthday"
                   onChange={handleInputChange}
-                  required
                   value={userData.birthDate}
                   max={new Date(
                     new Date().getFullYear() - 7,

@@ -48,10 +48,17 @@ function UserListPage() {
 
       console.log("totalPages", totalPages);
 
-      const formattedUsers = response.data.data.map((user) => ({
-        ...user,
-        birthDate: formatDate(user.birthDate),
-      }));
+      const formattedUsers = response.data.data.map((user) => {
+        const formattedBirthDate =
+          user.birthDate !== "Prefer-not-to-say"
+            ? formatDate(user.birthDate)
+            : "Prefer-not-to-say";
+        return {
+          ...user,
+          birthDate: formattedBirthDate,
+        };
+      });
+
       setUsers(formattedUsers);
     } catch (error) {
       console.error("Failed to fetch users:", error);

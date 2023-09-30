@@ -78,57 +78,30 @@ export const updateUser = async (req, res) => {
   const updatedUserData = req.body;
 
   //default img
-  let image =
+  let defaultImage =
     "https://res.cloudinary.com/dvh7erh4q/image/upload/v1695924400/users/IMG_7979_gjogw1.jpg";
 
-  if (req.file) {
-    try {
+  try {
+    if (req.file) {
       const uploadedImage = await cloudinaryUploadProfile(req.file);
       updatedUserData.picture = uploadedImage;
-
-      const updatedUser = await User.findByIdAndUpdate(
-        userId,
-        updatedUserData,
-        {
-          new: true,
-        }
-      );
-
-      // check if there are no users
-      if (!updatedUser) {
-        return res.status(404).json({ message: "User not found" });
-      }
-
-      res.json({ data: updatedUser, message: "User updated successfully" });
-    } catch (error) {
-      console.log(error);
-      res
-        .status(500)
-        .json({ message: "Failed to update user", error: error.message });
+    } else if (!updatedUserData.picture) {
+      updatedUserData.picture = defaultImage;
     }
-  } else {
-    try {
-      updatedUserData.picture = image;
 
-      const updatedUser = await User.findByIdAndUpdate(
-        userId,
-        updatedUserData,
-        {
-          new: true,
-        }
-      );
+    const updatedUser = await User.findByIdAndUpdate(userId, updatedUserData, {
+      new: true,
+    });
 
-      // check if there are no users
-      if (!updatedUser) {
-        return res.status(404).json({ message: "User not found" });
-      }
-
-      res.json({ data: updatedUser, message: "User updated successfully" });
-    } catch (error) {
-      res
-        .status(500)
-        .json({ message: "Failed to update user", error: error.message });
+    if (!updatedUser) {
+      return res.status(404).json({ message: "User not found" });
     }
+
+    res.json({ data: updatedUser, message: "User updated successfully" });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Failed to update user", error: error.message });
   }
 };
 

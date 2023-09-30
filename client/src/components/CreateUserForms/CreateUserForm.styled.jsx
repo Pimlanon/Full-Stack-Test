@@ -134,6 +134,14 @@ export const ImageContainer = styled.div`
       border-radius: 50%;
       object-fit: cover;
     }
+
+    p {
+      color: #ab3333;
+      width: 100%;
+      text-align: center;
+      margin-top: 0.3rem;
+      font-size: 13px;
+    }
   }
 
   .image-btn {
@@ -143,6 +151,8 @@ export const ImageContainer = styled.div`
     align-items: center;
     width: 15rem;
     position: relative;
+
+    margin-bottom: 0.5rem;
 
     @media (max-width: 425px) {
       width: 100%;

@@ -14,6 +14,7 @@ function CreateUserForm({
   handleFileChange,
   image,
   handleDeleteImage,
+  invalidIMG,
 }) {
   return (
     <Container>
@@ -22,7 +23,9 @@ function CreateUserForm({
           <ImageContainer>
             <figure>
               <img src={image}></img>
+              {invalidIMG && <p>*Please select a valid image file</p>}
             </figure>
+
             <div className="image-btn">
               <div>
                 <label className="input-field-label" htmlFor="fileInput">
@@ -70,9 +73,9 @@ function CreateUserForm({
               </div>
               <div>
                 <label htmlFor="gender">Gender</label>
-                <select name="gender" onChange={handleInputChange} required>
-                  <option value="" disabled={false}>
-                    -- Please select Gender --
+                <select name="gender" onChange={handleInputChange}>
+                  <option value="Prefer-not-to-say" disabled={false}>
+                    -- Please select gender --
                   </option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
@@ -88,7 +91,6 @@ function CreateUserForm({
                   name="birthDate"
                   id="birthday"
                   onChange={handleInputChange}
-                  required
                   max={new Date(
                     new Date().getFullYear() - 7,
                     new Date().getMonth(),

@@ -7,12 +7,13 @@ import CreateUserHead from "../components/CreateUserHeads/CreateUserHead";
 import CreateUserForm from "../components/CreateuserForms/CreateUserForm";
 
 function CreateNewUserPage() {
+  const [invalidIMG, setInvalidIMG] = useState(false);
   const [image, setImage] = useState(null);
   const [userData, setUserData] = useState({
     firstName: "",
     lastName: "",
-    gender: "",
-    birthDate: "",
+    gender: "Prefer-not-to-say",
+    birthDate: "Prefer-not-to-say",
     picture: "",
   });
 
@@ -49,6 +50,15 @@ function CreateNewUserPage() {
     const formData = new FormData();
 
     for (const [key, value] of Object.entries(userData)) {
+      if (
+        key === "picture" &&
+        value instanceof File &&
+        !value.type.startsWith("image")
+      ) {
+        setInvalidIMG(true);
+        return;
+      }
+
       formData.append(key, value);
     }
 
@@ -89,6 +99,7 @@ function CreateNewUserPage() {
         handleFileChange={handleFileChange}
         image={image}
         handleDeleteImage={handleDeleteImage}
+        invalidIMG={invalidIMG}
       />
     </Layout>
   );
