@@ -15,8 +15,16 @@ export const HeadNav = styled.section`
     display: flex;
     align-items: center;
 
+    @media (max-width: 425px) {
+      margin-left: 1rem;
+    }
+
     h1 {
       color: #fff;
+
+      @media (max-width: 290px) {
+        font-size: 21px;
+      }
     }
   }
 
@@ -33,5 +41,14 @@ export const HeadNav = styled.section`
     align-item: center;
     font-size: 23px;
     color: #787878;
+
+    @media (max-width: 425px) {
+      margin-right: 1rem;
+    }
+
+    @media (max-width: 290px) {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
   }
 `;

@@ -7,9 +7,11 @@ export const Container = styled.section`
   justify-content: space-between;
   align-items: center;
   padding: 1rem 3rem 0rem 3rem;
+  margin-bottom: 1rem;
 
   @media (max-width: 500px) {
     padding: 1rem 1rem 0rem 1rem;
+    height: 6rem;
   }
 
   h1 {
