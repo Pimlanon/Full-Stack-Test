@@ -6,6 +6,7 @@ export const getUsers = async (req, res) => {
   const { page, limit } = req.query;
   try {
     const users = await User.find()
+      .sort({ createdAt: -1 })
       .limit(parseInt(limit))
       .skip((parseInt(page) - 1) * parseInt(limit));
 
