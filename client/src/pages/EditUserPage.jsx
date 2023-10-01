@@ -10,6 +10,7 @@ function EditUserPage() {
   const { id } = useParams();
   const NavigateTo = useNavigate();
   const [image, setImage] = useState(null);
+  const [isSending, setIsSending] = useState(false);
   const [userData, setUserData] = useState({
     firstName: "",
     lastName: "",
@@ -53,6 +54,8 @@ function EditUserPage() {
     console.log("formData ; ", formData);
 
     try {
+      setIsSending(true);
+
       const response = await axios.put(
         `http://localhost:3800/users/${id}`,
         formData,
@@ -62,6 +65,8 @@ function EditUserPage() {
       );
 
       console.log("completed", response);
+
+      setIsSending(false);
 
       //show alert if successfully updated
       Swal.fire({
@@ -106,6 +111,7 @@ function EditUserPage() {
         handleFileChange={handleFileChange}
         image={image}
         handleDeleteImage={handleDeleteImage}
+        isSending={isSending}
       />
     </Layout>
   );

@@ -1,3 +1,4 @@
+import BarLoader from "react-spinners/BarLoader";
 import {
   Container,
   Form,
@@ -14,6 +15,7 @@ function EditUserForm({
   handleFileChange,
   image,
   handleDeleteImage,
+  isSending,
 }) {
   return (
     <Container>
@@ -116,7 +118,17 @@ function EditUserForm({
         </div>
         <div className="btn-container">
           <button onClick={handleCancel}>CANCEL</button>
-          <button type="submit">SAVE</button>
+          <button type="submit">
+            SAVE
+            {isSending && (
+              <BarLoader
+                color="#ffffff"
+                width={100}
+                loading={isSending}
+                className="bar-loader"
+              />
+            )}
+          </button>
         </div>
       </Form>
     </Container>

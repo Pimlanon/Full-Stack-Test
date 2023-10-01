@@ -9,6 +9,7 @@ import CreateUserForm from "../components/CreateuserForms/CreateUserForm";
 function CreateNewUserPage() {
   const [invalidIMG, setInvalidIMG] = useState(false);
   const [image, setImage] = useState(null);
+  const [isSending, setIsSending] = useState(false);
   const [userData, setUserData] = useState({
     firstName: "",
     lastName: "",
@@ -63,6 +64,8 @@ function CreateNewUserPage() {
     }
 
     try {
+      setIsSending(true);
+
       const response = await axios.post(
         "http://localhost:3800/users",
         formData,
@@ -71,6 +74,8 @@ function CreateNewUserPage() {
         }
       );
       console.log("User created successfully:", response.data);
+
+      setIsSending(false);
 
       //show alert if successfuly created
       Swal.fire({
@@ -100,6 +105,7 @@ function CreateNewUserPage() {
         image={image}
         handleDeleteImage={handleDeleteImage}
         invalidIMG={invalidIMG}
+        isSending={isSending}
       />
     </Layout>
   );

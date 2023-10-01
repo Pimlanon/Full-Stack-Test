@@ -76,6 +76,11 @@ export const Form = styled.form`
         margin-bottom: 1rem;
         margin: 0 auto;
       }
+
+      .bar-loader {
+        width: 100%;
+        margin-top: 3px;
+      }
     }
 
     button:nth-child(1) {
@@ -84,6 +89,10 @@ export const Form = styled.form`
 
     button:nth-child(2) {
       background-color: #2a8233;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
 
       @media (max-width: 450px) {
         margin-bottom: 1rem;

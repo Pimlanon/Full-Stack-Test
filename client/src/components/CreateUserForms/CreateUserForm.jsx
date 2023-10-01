@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import BarLoader from "react-spinners/BarLoader";
 import {
   Container,
   Form,
@@ -15,6 +16,7 @@ function CreateUserForm({
   image,
   handleDeleteImage,
   invalidIMG,
+  isSending,
 }) {
   return (
     <Container>
@@ -56,6 +58,7 @@ function CreateUserForm({
                 <input
                   type="text"
                   name="firstName"
+                  id="firstName"
                   placeholder="Please enter First name"
                   onChange={handleInputChange}
                   required
@@ -66,6 +69,7 @@ function CreateUserForm({
                 <input
                   type="text"
                   name="lastName"
+                  id="lastName"
                   placeholder="Please enter Last name"
                   onChange={handleInputChange}
                   required
@@ -73,7 +77,7 @@ function CreateUserForm({
               </div>
               <div>
                 <label htmlFor="gender">Gender</label>
-                <select name="gender" onChange={handleInputChange}>
+                <select name="gender" id="gender" onChange={handleInputChange}>
                   <option value="Prefer-not-to-say" disabled={false}>
                     -- Please select gender --
                   </option>
@@ -112,7 +116,17 @@ function CreateUserForm({
         </div>
         <div className="btn-container">
           <button onClick={handleCancel}>CANCEL</button>
-          <button type="submit">SAVE</button>
+          <button type="submit">
+            SAVE
+            {isSending && (
+              <BarLoader
+                color="#ffffff"
+                width={100}
+                loading={isSending}
+                className="bar-loader"
+              />
+            )}
+          </button>
         </div>
       </Form>
     </Container>

@@ -87,6 +87,8 @@ export const updateUser = async (req, res) => {
       updatedUserData.picture = uploadedImage;
     } else if (!updatedUserData.picture) {
       updatedUserData.picture = defaultImage;
+    } else if (updatedUserData.picture === "null") {
+      updatedUserData.picture = defaultImage;
     }
 
     const updatedUser = await User.findByIdAndUpdate(userId, updatedUserData, {
