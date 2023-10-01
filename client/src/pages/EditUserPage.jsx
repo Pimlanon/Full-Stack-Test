@@ -10,6 +10,7 @@ function EditUserPage() {
   const { id } = useParams();
   const NavigateTo = useNavigate();
   const [image, setImage] = useState(null);
+  const [notFound, setNotFound] = useState(false);
   const [isSending, setIsSending] = useState(false);
   const [userData, setUserData] = useState({
     firstName: "",
@@ -91,28 +92,47 @@ function EditUserPage() {
       try {
         const response = await axios.get(`http://localhost:3800/users/${id}`);
         setUserData(response.data.data);
+        setNotFound(false);
       } catch (error) {
         console.error("Error fetching user data:", error);
+        setNotFound(true);
       }
     };
     fetchUserData();
   }, [id]);
 
+  useEffect(() => {
+    if (notFound) {
+      // Display UserNotFound component
+      Swal.fire({
+        title: "User Not Found",
+        text: "No data found. Redirecting to homepage...",
+        icon: "warning",
+        showCancelButton: false,
+        confirmButtonText: "OK",
+      }).then(() => {
+        NavigateTo("/users");
+      });
+    }
+  }, [notFound]);
+
   console.log("userDataInEdit :", userData);
 
   return (
     <Layout>
-      <CreateUserHead />
-      <EditUserForm
-        userData={userData}
-        handleInputChange={handleInputChange}
-        handleFormSubmit={handleFormSubmit}
-        handleCancel={handleCancel}
-        handleFileChange={handleFileChange}
-        image={image}
-        handleDeleteImage={handleDeleteImage}
-        isSending={isSending}
-      />
+      <div>
+        <CreateUserHead />
+        <EditUserForm
+          userData={userData}
+          handleInputChange={handleInputChange}
+          handleFormSubmit={handleFormSubmit}
+          handleCancel={handleCancel}
+          handleFileChange={handleFileChange}
+          image={image}
+          handleDeleteImage={handleDeleteImage}
+          isSending={isSending}
+        />
+      </div>
     </Layout>
   );
 }
