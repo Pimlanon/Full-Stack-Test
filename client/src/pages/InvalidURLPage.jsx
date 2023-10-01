@@ -1,28 +1,25 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import InvalidURL from "../components/InvalidURLs/InvalidURL";
 
 function InvalidURLPage() {
-  const navigate = useNavigate();
+  const navigateTo = useNavigate();
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      navigate("/users");
+      navigateTo("/users");
     }, 5000);
 
     return () => {
       clearTimeout(timeout);
     };
-  }, [navigate]);
+  }, [navigateTo]);
 
-  return (
-    <div>
-      <h1>Invalid URL</h1>
-      <p>
-        The URL you entered is invalid. You will be redirected back in 5
-        seconds.
-      </p>
-    </div>
-  );
+  const linkToScanPage = () => {
+    navigateTo("/users");
+  };
+
+  return <InvalidURL linkToScanPage={linkToScanPage} />;
 }
 
 export default InvalidURLPage;
