@@ -39,7 +39,6 @@ function EditUserPage() {
 
   const handleDeleteImage = (e) => {
     e.preventDefault();
-    console.log("Delete Picture button clicked!");
     setUserData({ ...userData, picture: null });
     setImage(null);
   };
@@ -52,20 +51,12 @@ function EditUserPage() {
       formData.append(key, value);
     }
 
-    console.log("formData ; ", formData);
-
     try {
       setIsSending(true);
 
-      const response = await axios.put(
-        `http://localhost:3800/users/${id}`,
-        formData,
-        {
-          headers: { "Content-Type": "multipart/form-data" },
-        }
-      );
-
-      console.log("completed", response);
+      await axios.put(`http://localhost:3800/users/${id}`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
 
       setIsSending(false);
 
@@ -75,7 +66,6 @@ function EditUserPage() {
         title: "User Updated",
         text: "User has been updated successfully!",
       }).then(() => {
-        console.log("Swal pop-up displayed");
         NavigateTo("/users");
       });
     } catch (error) {
@@ -101,9 +91,9 @@ function EditUserPage() {
     fetchUserData();
   }, [id]);
 
+  //display alert if user not found
   useEffect(() => {
     if (notFound) {
-      // Display UserNotFound component
       Swal.fire({
         title: "User Not Found",
         text: "No data found. Redirecting to homepage...",
@@ -115,8 +105,6 @@ function EditUserPage() {
       });
     }
   }, [notFound]);
-
-  console.log("userDataInEdit :", userData);
 
   return (
     <Layout>

@@ -5,7 +5,6 @@ export const Container = styled.section`
   margin-bottom: 2rem;
 
   table {
-    /* border: 1px solid black; */
     width: 100%;
     border: none;
     border-collapse: collapse;
@@ -21,13 +20,11 @@ export const Container = styled.section`
       height: 4rem;
 
       th {
-        /* border: 1px solid black; */
         background-color: #a3a3a2;
         border: none;
       }
 
       td {
-        /*border: 1px solid black;*/
         width: 15%;
         height: 5rem;
         border: none;

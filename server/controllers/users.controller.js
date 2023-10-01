@@ -1,7 +1,7 @@
 import User from "../models/user.model.js";
 import { cloudinaryUploadProfile } from "../utils/upload.js";
 
-// fetch all users
+//fetch all users
 export const getUsers = async (req, res) => {
   const { page, limit } = req.query;
   try {
@@ -10,13 +10,13 @@ export const getUsers = async (req, res) => {
       .limit(parseInt(limit))
       .skip((parseInt(page) - 1) * parseInt(limit));
 
-    // find total document of User
+    //find total document of User
     const totalDocs = await User.countDocuments();
 
     console.log("totalDocs:", totalDocs);
     console.log("Users:", users);
 
-    // check if there are no users
+    //check if there are no users
     if (!users || users.length === 0) {
       return res.status(404).send({ message: "No users found" });
     }
@@ -59,8 +59,6 @@ export const createUser = async (req, res) => {
   }
 
   userData.picture = image;
-
-  console.log("userData: ", userData);
 
   try {
     const newUser = await User.create(userData);

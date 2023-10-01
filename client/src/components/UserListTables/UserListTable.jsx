@@ -2,7 +2,6 @@ import { Container } from "./UserListTable.styled";
 import PropTypes from "prop-types";
 
 function UserListTable({ users, handleDelete, handleEdit }) {
-  console.log(users);
   return (
     <Container>
       <table>

@@ -6,7 +6,7 @@ function InvalidURL({ linkToScanPage }) {
     <Container>
       <p>Error: Invalid URL. Redirecting to homepage in 5 seconds....</p>
       <p>
-        If you do not want to visit that page, you can &nbsp;
+        If you do not want to visit that page, you can&nbsp;
         <a onClick={linkToScanPage}>return to the previous page</a>
       </p>
     </Container>

@@ -35,10 +35,6 @@ function CreateNewUserPage() {
     }
   };
 
-  console.log(image);
-
-  console.log("userData : ", userData);
-
   const handleDeleteImage = (e) => {
     e.preventDefault();
     setUserData({ ...userData, picture: null });
@@ -51,6 +47,7 @@ function CreateNewUserPage() {
     const formData = new FormData();
 
     for (const [key, value] of Object.entries(userData)) {
+      //check valid file of image
       if (
         key === "picture" &&
         value instanceof File &&
@@ -66,14 +63,9 @@ function CreateNewUserPage() {
     try {
       setIsSending(true);
 
-      const response = await axios.post(
-        "http://localhost:3800/users",
-        formData,
-        {
-          headers: { "Content-Type": "multipart/form-data" },
-        }
-      );
-      console.log("User created successfully:", response.data);
+      await axios.post("http://localhost:3800/users", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
 
       setIsSending(false);
 

@@ -14,16 +14,14 @@ export const cloudinaryUploadProfile = async (file) => {
 
     const fileUrl = result.secure_url;
 
-    // Remove the local file after successful upload
+    //remove the local file after successful upload
     await fs.unlink(file.path);
 
     return fileUrl;
   } catch (error) {
-    // Handle any errors that occur during upload or file deletion
     console.error(
       "Error uploading to Cloudinary or deleting local file:",
       error
     );
-    throw new Error("Failed to upload image");
   }
 };

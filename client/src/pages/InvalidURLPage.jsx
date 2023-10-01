@@ -13,7 +13,7 @@ function InvalidURLPage() {
     return () => {
       clearTimeout(timeout);
     };
-  }, [navigateTo]);
+  }, []);
 
   const linkToScanPage = () => {
     navigateTo("/users");

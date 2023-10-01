@@ -15,7 +15,7 @@ import {
 function UserListPage() {
   const navigateTo = useNavigate();
   const [users, setUsers] = useState([]);
-  const [limit, setLimit] = useState(3); //page limit
+  const [limit, setLimit] = useState(3);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
@@ -36,17 +36,11 @@ function UserListPage() {
           limit,
         },
       });
-      console.log(" pls ", response.data.data);
 
-      console.log("API response:", response.data);
-
-      //Get total of document in database and calculate total pages.
+      //get total of document in database and calculate total pages
       const totalDocs = response.data.totalDocs;
-      console.log(totalDocs);
       const totalPages = Math.ceil(totalDocs / limit);
       setTotalPages(totalPages);
-
-      console.log("totalPages", totalPages);
 
       const formattedUsers = response.data.data.map((user) => {
         const formattedBirthDate =
@@ -96,9 +90,8 @@ function UserListPage() {
 
       if (confirmed.isConfirmed) {
         await axios.delete(`http://localhost:3800/users/${id}`);
-        console.log("User deleted successfully!");
 
-        // Reload the data after successful delete
+        // reload the data after successful delete
         getUsersData();
       }
     } catch (error) {
